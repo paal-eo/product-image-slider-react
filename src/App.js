@@ -15,14 +15,6 @@ import { useState } from 'react';
 function App() {
   const [activeImg, setActiveImg] = useState(0)
 
-  const chooseNext = (direction) => {
-    if ((activeImg !== 0 || direction === 1) && (activeImg !== images.length-1 || direction === -1)) {
-      setActiveImg(currentState => {
-        return currentState + direction
-      })
-    }
-  }
-
   const images = [
     { i: 0, src: img0 },
     { i: 1, src: img1 },
@@ -30,13 +22,26 @@ function App() {
     { i: 3, src: img3 },
   ]
 
+  const chooseNext = (direction) => {
+    if ((activeImg !== 0 || direction === 1) && (activeImg !== images.length - 1 || direction === -1)) {
+      setActiveImg(currentState => {
+        return currentState + direction
+      })
+    }
+    const imageWidth = 147
+    if (direction > 0) {
+      document.getElementById('slider').scrollLeft += imageWidth + 14
+    } else {
+      document.getElementById('slider').scrollLeft -= imageWidth + 14
+    }
+  }
 
   return (
     <div className="App">
       <img className='featured' src={images[activeImg].src} alt="" />
       <div className="slide-wrapper">
         <img className='arrow' onClick={() => chooseNext(-1)} src={leftArr} alt="" />
-        <div className="slider">
+        <div id='slider' className="slider">
           {images.map(e => {
             return <img key={e.i} onClick={() => setActiveImg(e.i)} className={`thumbnail ${e.i === activeImg ? 'active' : ''}`} src={e.src} alt="" />
           })}
