@@ -3,28 +3,47 @@ import rightArr from "./images/navigation/chevron-right.svg";
 
 
 export const LeftNavBtn = (props) => {
-    const { className, style, onClick } = props
+    const { onClick, onNav, activeImg, firstVisibleImgState } = props
+    const { get, set } = firstVisibleImgState
+    const clickHandler = () => {
+        console.log('click');
+        onNav(-1)
+        if (activeImg === get) {
+            onClick()
+            set(currentState => currentState - 1)
+        }
+
+    }
 
     return (
-        <div
-            // className={classes.btn}
-            onClick={onClick}
-        >
-            <img src={leftArr} alt="" />
+        <div>
+            <div onClick={clickHandler}>
+                <img src={leftArr} alt="" />
+            </div>
         </div>
 
     )
 }
 export const RightNavBtn = (props) => {
-    const { className, style, onClick } = props
+    const { onClick, onNav, activeImg, firstVisibleImgState } = props
+    const numberOfVisibleImgs = 3
+    const { get, set } = firstVisibleImgState
+    const lastVisibleImg = get + numberOfVisibleImgs - 1
+    const clickHandler = () => {
+        console.log('click');
+        onNav(1)
+
+        if (activeImg === lastVisibleImg) {
+            onClick()
+            set(currentState => currentState + 1)
+        }
+    }
 
     return (
-        <div
-            // className={classes.btn}
-            onClick={onClick}
-        >
-                        <img src={rightArr} alt="" />
-
+        <div>
+            <div onClick={clickHandler}>
+                <img src={rightArr} alt="" />
+            </div>
         </div>
     )
 }

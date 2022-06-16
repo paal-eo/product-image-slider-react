@@ -1,5 +1,6 @@
 body {
   background-color: rgb(53, 48, 41);
+  padding: 0 30px;
 }
 
 .featured {
@@ -30,9 +31,9 @@ body {
 }
 
 .slide-wrapper {
-  max-width: 546px;
+  max-width: 635px;
   display: flex;
-  min-height: 100px;
+  /* min-height: 100px; */
   align-items: center;
 }
 
