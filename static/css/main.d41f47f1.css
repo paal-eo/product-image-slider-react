@@ -1,0 +1,2 @@
+body{background-color:#353029}.featured{width:700px}.featured,.thumbnail{border:2px solid #000;cursor:pointer;object-fit:cover}.thumbnail{margin:5px;max-height:100px;max-width:180px;opacity:.4}.active,.thumbnail:hover{opacity:1}.slide-wrapper{align-items:center;display:flex;max-width:546px;min-height:100px}.slider{display:flex;flex-wrap:nowrap;overflow-x:hidden}.arrow{cursor:pointer;height:30px;transition:.3s;width:30px}.arrow:hover{height:35px;opacity:.5;width:35px}
+/*# sourceMappingURL=main.d41f47f1.css.map*/
