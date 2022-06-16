@@ -13,11 +13,14 @@ import { useState } from 'react';
 
 
 function App() {
+  const [activeImg, setActiveImg] = useState(0)
 
-
-
-  const chooseNext = () => {
-
+  const chooseNext = (direction) => {
+    if ((activeImg !== 0 || direction === 1) && (activeImg !== images.length-1 || direction === -1)) {
+      setActiveImg(currentState => {
+        return currentState + direction
+      })
+    }
   }
 
   const images = [
@@ -27,7 +30,6 @@ function App() {
     { i: 3, src: img3 },
   ]
 
-  const [activeImg, setActiveImg] = useState(0)
 
   return (
     <div className="App">
@@ -36,7 +38,7 @@ function App() {
         <img className='arrow' onClick={() => chooseNext(-1)} src={leftArr} alt="" />
         <div className="slider">
           {images.map(e => {
-            return <img onClick={() => setActiveImg(e.i)} className={`thumbnail ${e.i === activeImg ? 'active' : ''}`} src={e.src} alt="" />
+            return <img key={e.i} onClick={() => setActiveImg(e.i)} className={`thumbnail ${e.i === activeImg ? 'active' : ''}`} src={e.src} alt="" />
           })}
         </div>
         <img className='arrow' onClick={() => chooseNext(1)} src={rightArr} alt="" />
