@@ -6,11 +6,8 @@ import img1 from "./images/a2005_black_face.webp";
 import img2 from "./images/a2005_black_side1.webp";
 import img3 from "./images/a2005_black_side2.webp";
 
-
-import leftArr from "./images/navigation/chevron-left.svg";
-import rightArr from "./images/navigation/chevron-right.svg";
 import { useState } from 'react';
-import { LeftNavBtn, RightNavBtn } from "./arrows";
+import { Arrow } from "./arrow";
 
 
 function App() {
@@ -29,24 +26,14 @@ function App() {
     { i: 7, src: img3 },
   ]
 
-  const navHandler = (direction) => {
-    const isFirstImg = activeImg === 0
-    const isLastImg = activeImg === images.length - 1
-    if ((!isFirstImg || direction === 1) && (!isLastImg || direction === -1)) {
-      setActiveImg(currentState => {
-        return currentState + direction
-      })
-    }
-  }
-
   const settings = {
     infinite: false,
     speed: 500,
     slidesToShow: 3,
     slidesToScroll: 1,
     prevArrow: (
-      <LeftNavBtn
-        onNav={navHandler}
+      <Arrow
+        direction="left"
         activeImg={activeImg}
         firstVisibleImgState={{
           get: firstVisibleImg,
@@ -54,8 +41,8 @@ function App() {
         }}
       />),
     nextArrow: (
-      <RightNavBtn
-        onNav={navHandler}
+      <Arrow
+        direction="right"
         activeImg={activeImg}
         firstVisibleImgState={{
           get: firstVisibleImg,
@@ -66,6 +53,10 @@ function App() {
 
 return (
   <div className="App">
+    <br />firstVisibleImg: {firstVisibleImg}
+    <br />lastVisibleImg: {firstVisibleImg+2}
+    <br />activeImg: {activeImg}
+    <br />
     <img className='featured' src={images[activeImg].src} alt="" />
     <div className="slide-wrapper">
       <Slider {...settings} id="slider" className="slide-wrapper">
