@@ -12,6 +12,7 @@ import NavBtn, { Arrow } from "./arrow";
 
 function App() {
   const [activeImg, setActiveImg] = useState(0)
+  const [firstVisibleImg, setFirstVisibleImg] = useState(0)
 
   const images = [
     { i: 0, src: img0 },
@@ -34,6 +35,8 @@ function App() {
         dir="left"
         activeImg={activeImg}
         onSetActive={setActiveImg}
+        firstVisibleImg={firstVisibleImg}
+        onSetFirstVisibleImg={setFirstVisibleImg}
         images={images}
       />),
     nextArrow: (
@@ -41,6 +44,8 @@ function App() {
         dir="right"
         activeImg={activeImg}
         onSetActive={setActiveImg}
+        firstVisibleImg={firstVisibleImg}
+        onSetFirstVisibleImg={setFirstVisibleImg}
         images={images}
       />),
 }
@@ -48,6 +53,7 @@ function App() {
 return (
   <div className="App">
     <br />activeImg: {activeImg}
+    <br />firstVisibleImg: {firstVisibleImg}
     <br />
     <img className='featured' src={images[activeImg].src} alt="" />
     <div className="slide-wrapper">
