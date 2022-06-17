@@ -7,7 +7,7 @@ import img2 from "./images/a2005_black_side1.webp";
 import img3 from "./images/a2005_black_side2.webp";
 
 import { useState } from 'react';
-import NavBtn, { Arrow } from "./arrow";
+import NavBtn from "./arrow";
 
 
 function App() {
@@ -28,6 +28,8 @@ function App() {
   const settings = {
     infinite: false,
     speed: 100,
+    // don't set this value too high.
+    // if it's at 200 it's possible to click the chevron arrows rapidly and the slick slider looses track of where the active image is
     slidesToShow: 3,
     slidesToScroll: 1,
     prevArrow: (
@@ -48,32 +50,20 @@ function App() {
         onSetFirstVisibleImg={setFirstVisibleImg}
         images={images}
       />),
-}
+  }
 
-return (
-  <div className="App">
-    <br />activeImg: {activeImg}
-    <br />firstVisibleImg: {firstVisibleImg}
-    <br />
-    <img className='featured' src={images[activeImg].src} alt="" />
-    <div className="slide-wrapper">
-      <Slider {...settings} id="slider" className="slide-wrapper">
-        {images.map(e => {
-          return <img key={e.i} onClick={() => setActiveImg(e.i)} className={`thumbnail ${e.i === activeImg ? 'active' : ''}`} src={e.src} alt="" />
-        })}
-      </Slider>
-    </div>
-    {/* <div className="slide-wrapper">
-        <img className='arrow' onClick={() => chooseNext(-1)} src={leftArr} alt="" />
-        <div className="slider">
+  return (
+    <div className="App">
+      <img className='featured' src={images[activeImg].src} alt="" />
+      <div className="slide-wrapper">
+        <Slider {...settings} id="slider" className="slide-wrapper">
           {images.map(e => {
             return <img key={e.i} onClick={() => setActiveImg(e.i)} className={`thumbnail ${e.i === activeImg ? 'active' : ''}`} src={e.src} alt="" />
           })}
-        </div>
-        <img className='arrow' onClick={() => chooseNext(1)} src={rightArr} alt="" />
-      </div> */}
-  </div>
-);
+        </Slider>
+      </div>
+    </div>
+  );
 }
 
 export default App;
