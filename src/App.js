@@ -7,13 +7,11 @@ import img2 from "./images/a2005_black_side1.webp";
 import img3 from "./images/a2005_black_side2.webp";
 
 import { useState } from 'react';
-import { Arrow } from "./arrow";
+import NavBtn, { Arrow } from "./arrow";
 
 
 function App() {
   const [activeImg, setActiveImg] = useState(0)
-
-  const [firstVisibleImg, setFirstVisibleImg] = useState(0)
 
   const images = [
     { i: 0, src: img0 },
@@ -28,33 +26,27 @@ function App() {
 
   const settings = {
     infinite: false,
-    speed: 500,
+    speed: 100,
     slidesToShow: 3,
     slidesToScroll: 1,
     prevArrow: (
-      <Arrow
-        direction="left"
+      <NavBtn
+        dir="left"
         activeImg={activeImg}
-        firstVisibleImgState={{
-          get: firstVisibleImg,
-          set: setFirstVisibleImg
-        }}
+        onSetActive={setActiveImg}
+        images={images}
       />),
     nextArrow: (
-      <Arrow
-        direction="right"
+      <NavBtn
+        dir="right"
         activeImg={activeImg}
-        firstVisibleImgState={{
-          get: firstVisibleImg,
-          set: setFirstVisibleImg
-        }}
+        onSetActive={setActiveImg}
+        images={images}
       />),
 }
 
 return (
   <div className="App">
-    <br />firstVisibleImg: {firstVisibleImg}
-    <br />lastVisibleImg: {firstVisibleImg+2}
     <br />activeImg: {activeImg}
     <br />
     <img className='featured' src={images[activeImg].src} alt="" />
